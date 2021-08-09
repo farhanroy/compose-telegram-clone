@@ -43,7 +43,7 @@ fun MainScreen() {
 
         // Another Route : Chat detail
         composable(Routes.ChatDetail.route) {
-           ChatDetailScreen()
+           ChatDetailScreen(navController = navController)
         }
     }
 }

@@ -7,9 +7,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun AppDrawer(drawerState: DrawerState) {
+fun AppDrawer() {
     val scope = rememberCoroutineScope()
-
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
     ModalDrawer(
         drawerState = drawerState,
         drawerContent = {
