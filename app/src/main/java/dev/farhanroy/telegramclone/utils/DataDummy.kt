@@ -6,7 +6,8 @@ data class Chat(
     val time: String,
     val date: String?,
     val lastMessage: String?,
-    val imageUrl: String
+    val imageUrl: String,
+    val newChatSize: Int
 )
 
 data class Message(
@@ -22,7 +23,8 @@ object DataDummy {
             time = "08:46",
             date = "17 june",
             lastMessage = "Assalamualaikum",
-            imageUrl = "https://randomuser.me/api/portraits/men/12.jpg"
+            imageUrl = "https://randomuser.me/api/portraits/men/12.jpg",
+            newChatSize = 121
         ),
     )
 

@@ -42,8 +42,9 @@ fun MainScreen() {
         }
 
         // Another Route : Chat detail
-        composable(Routes.ChatDetail.route) {
-           ChatDetailScreen(navController = navController)
+        composable(Routes.ChatDetail.route + "/{id}") {
+            val id = it.arguments?.getInt("id")
+           ChatDetailScreen(navController = navController, index = id ?: 0)
         }
     }
 }

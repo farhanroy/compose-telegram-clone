@@ -1,9 +1,11 @@
 package dev.farhanroy.telegramclone.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
@@ -53,17 +55,17 @@ fun ChatScreen(navController: NavHostController) {
         },
         scaffoldState = scaffoldState
     ) {
-        ChatList(onClick = {
-            navController.navigate(Routes.ChatDetail.route)
-        })
+        ChatList(navController)
     }
 }
 
 @Composable
-fun ChatList(onClick: () -> Unit) {
+fun ChatList(navController: NavHostController) {
     val listChat = DataDummy.listChat
     LazyColumn {
-        items(listChat.size) { index -> ChatItem(listChat[index], onClick) }
+        items(listChat.size) { index -> ChatItem(listChat[index], onClick = {
+            navController.navigate(Routes.ChatDetail.route + "/$index")
+        }) }
     }
 }
 
@@ -71,32 +73,36 @@ fun ChatList(onClick: () -> Unit) {
 fun ChatItem(chat: Chat, onClick: () -> Unit) {
     Row(
         Modifier
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(horizontal = 16.dp, vertical = 16.dp)
             .clickable { onClick() }) {
         GlideImage(
             imageModel = chat.imageUrl,
             modifier = Modifier
                 .clip(CircleShape)
-                .size(64.dp),
+                .size(56.dp),
             contentScale = ContentScale.Crop
         )
-        Column(Modifier.padding(horizontal = 8.dp)) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(chat.name, fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
-                Spacer(modifier = Modifier.height(8.dp))
-                Text(chat.time, fontWeight = FontWeight.Light, fontSize = 12.sp)
-            }
+        Column(Modifier.padding(horizontal = 14.dp).weight(7f)) {
+            Text(chat.name, fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 chat.lastMessage ?: "",
                 maxLines = 1,
-                fontSize = 15.sp,
+                fontSize = 16.sp,
                 color = Color.Gray
             )
-            Spacer(modifier = Modifier.height(16.dp))
-            Divider(color = Color(0xFFebebeb))
+        }
+
+        Column(Modifier.weight(1f)) {
+            Text(chat.time, fontWeight = FontWeight.Light, fontSize = 13.sp)
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = chat.newChatSize.toString(),
+                color = Color.White,
+                fontSize = 13.sp,
+                modifier = Modifier.background(Color.LightGray, shape = RoundedCornerShape(4.dp)).padding(4.dp),
+
+            )
         }
     }
 }
