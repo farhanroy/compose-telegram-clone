@@ -20,7 +20,7 @@ fun UserBubble(message: Message) {
             .fillMaxWidth()
             .padding(80.dp, end = 10.dp)
             .clip(RoundedCornerShape(8.dp))
-            .background(color = Color(0Xffd0ffc4)),
+            .background(color = Color(0xFFEDFFE8)),
     ) {
         Row(modifier = Modifier.padding(all = 10.dp)) {
             Column(modifier = Modifier.weight(3.0f, true)) {

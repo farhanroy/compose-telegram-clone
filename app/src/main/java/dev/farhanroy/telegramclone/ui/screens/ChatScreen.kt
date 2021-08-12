@@ -50,7 +50,7 @@ fun ChatScreen(navController: NavHostController) {
         drawerContent = { Text(text = "")},
         floatingActionButton = {
             FloatingActionButton(onClick = { /*TODO*/ }) {
-                Icon(Icons.Default.Edit, contentDescription = null)
+                Icon(Icons.Default.Edit, contentDescription = null, tint = Color.White)
             }
         },
         scaffoldState = scaffoldState
