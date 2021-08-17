@@ -47,7 +47,7 @@ fun ChatScreen(navController: NavHostController) {
                 } }
             )
         },
-        drawerContent = { Text(text = "")},
+        drawerContent = { AppDrawer() },
         floatingActionButton = {
             FloatingActionButton(onClick = { /*TODO*/ }) {
                 Icon(Icons.Default.Edit, contentDescription = null, tint = Color.White)
@@ -82,7 +82,10 @@ fun ChatItem(chat: Chat, onClick: () -> Unit) {
                 .size(56.dp),
             contentScale = ContentScale.Crop
         )
-        Column(Modifier.padding(horizontal = 14.dp).weight(7f)) {
+        Column(
+            Modifier
+                .padding(horizontal = 14.dp)
+                .weight(7f)) {
             Text(chat.name, fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
             Spacer(modifier = Modifier.height(4.dp))
             Text(
@@ -100,7 +103,9 @@ fun ChatItem(chat: Chat, onClick: () -> Unit) {
                 text = chat.newChatSize.toString(),
                 color = Color.White,
                 fontSize = 13.sp,
-                modifier = Modifier.background(Color.LightGray, shape = RoundedCornerShape(4.dp)).padding(4.dp),
+                modifier = Modifier
+                    .background(Color.LightGray, shape = RoundedCornerShape(4.dp))
+                    .padding(4.dp),
 
             )
         }
