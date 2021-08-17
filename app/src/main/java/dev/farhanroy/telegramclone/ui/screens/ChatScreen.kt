@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.skydoves.landscapist.glide.GlideImage
+import dev.farhanroy.telegramclone.Router
 import dev.farhanroy.telegramclone.Routes
 import dev.farhanroy.telegramclone.ui.components.AppDrawer
 import dev.farhanroy.telegramclone.utils.Chat
@@ -30,41 +31,46 @@ import dev.farhanroy.telegramclone.utils.DataDummy
 import kotlinx.coroutines.launch
 
 @Composable
-fun ChatScreen(navController: NavHostController) {
+fun ChatScreen() {
     val scaffoldState = rememberScaffoldState()
-    val coroutineScope = rememberCoroutineScope()
+
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = "Telegram") },
-                actions = { Icon(Icons.Default.Search, contentDescription = null) },
-                navigationIcon = { IconButton(onClick = {
-                    coroutineScope.launch {
-                        scaffoldState.drawerState.open()
-                    }
-                }) {
-                    Icon(imageVector = Icons.Default.Menu, contentDescription = null)
-                } }
-            )
-        },
-        drawerContent = { Text(text = "")},
+        topBar = { ChatAppBar(scaffoldState) },
+        drawerContent = { AppDrawer() },
         floatingActionButton = {
             FloatingActionButton(onClick = { /*TODO*/ }) {
                 Icon(Icons.Default.Edit, contentDescription = null, tint = Color.White)
             }
         },
-        scaffoldState = scaffoldState
-    ) {
-        ChatList(navController)
-    }
+        scaffoldState = scaffoldState,
+        content = { ChatList() }
+    )
 }
 
 @Composable
-fun ChatList(navController: NavHostController) {
+private fun ChatAppBar(scaffoldState: ScaffoldState) {
+    val coroutineScope = rememberCoroutineScope()
+    TopAppBar(
+        title = { Text(text = "Telegram") },
+        actions = { Icon(Icons.Default.Search, contentDescription = null) },
+        navigationIcon = { IconButton(onClick = {
+            coroutineScope.launch {
+                scaffoldState.drawerState.open()
+            }
+        }) {
+            Icon(imageVector = Icons.Default.Menu, contentDescription = null)
+        } }
+    )
+}
+
+@Composable
+fun ChatList() {
+    val router = Router.current;
     val listChat = DataDummy.listChat
+
     LazyColumn {
         items(listChat.size) { index -> ChatItem(listChat[index], onClick = {
-            navController.navigate(Routes.ChatDetail.route + "/$index")
+            router.navigate(Routes.ChatDetail.route + "/$index")
         }) }
     }
 }
@@ -82,7 +88,10 @@ fun ChatItem(chat: Chat, onClick: () -> Unit) {
                 .size(56.dp),
             contentScale = ContentScale.Crop
         )
-        Column(Modifier.padding(horizontal = 14.dp).weight(7f)) {
+        Column(
+            Modifier
+                .padding(horizontal = 14.dp)
+                .weight(7f)) {
             Text(chat.name, fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
             Spacer(modifier = Modifier.height(4.dp))
             Text(
@@ -100,7 +109,9 @@ fun ChatItem(chat: Chat, onClick: () -> Unit) {
                 text = chat.newChatSize.toString(),
                 color = Color.White,
                 fontSize = 13.sp,
-                modifier = Modifier.background(Color.LightGray, shape = RoundedCornerShape(4.dp)).padding(4.dp),
+                modifier = Modifier
+                    .background(Color.LightGray, shape = RoundedCornerShape(4.dp))
+                    .padding(4.dp),
 
             )
         }
