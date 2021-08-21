@@ -6,11 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dev.farhanroy.telegramclone.ui.screens.ChatDetailScreen
 import dev.farhanroy.telegramclone.ui.screens.ChatScreen
+import dev.farhanroy.telegramclone.ui.screens.SettingScreen
 import dev.farhanroy.telegramclone.ui.theme.TelegramCloneTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,17 +22,22 @@ class MainActivity : ComponentActivity() {
             TelegramCloneTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    MainScreen()
+                    val navController = rememberNavController()
+
+                    CompositionLocalProvider(Router provides navController) {
+                        MainScreen()
+                    }
+
                 }
             }
         }
     }
 }
 
+
 @Composable
 fun MainScreen() {
-    val navController = rememberNavController()
-
+    val navController = Router.current
     NavHost(navController = navController, startDestination = Routes.Chat.route) {
 
         // First route : Chat
@@ -39,6 +46,13 @@ fun MainScreen() {
             // Lay down the Home Composable
             // and pass the navController
             ChatScreen(navController = navController)
+        }
+
+        composable(Routes.Setting.route) {
+
+            // Lay down the Home Composable
+            // and pass the navController
+            SettingScreen()
         }
 
         // Another Route : Chat detail

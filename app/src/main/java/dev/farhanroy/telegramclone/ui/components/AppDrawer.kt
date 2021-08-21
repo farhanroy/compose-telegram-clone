@@ -1,6 +1,7 @@
 package dev.farhanroy.telegramclone.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -16,9 +17,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.skydoves.landscapist.glide.GlideImage
 import dev.farhanroy.telegramclone.R
+import dev.farhanroy.telegramclone.Router
+import dev.farhanroy.telegramclone.Routes
 
 @Composable
 fun AppDrawer() {
+    val router = Router.current
     Column {
         DrawerHeader()
 
@@ -40,7 +44,10 @@ fun AppDrawer() {
         )
         DrawerMenuItem(
             icon = R.drawable.ic_settings,
-            text = "Settings"
+            text = "Settings",
+            onClick = {
+                router.navigate(Routes.Setting.route)
+            }
         )
         Divider()
         DrawerMenuItem(
@@ -60,10 +67,13 @@ fun DrawerHeader() {
         Modifier
             .fillMaxWidth()
             .height(156.dp)
-            .background(color = MaterialTheme.colors.primary)) {
-        Column(verticalArrangement = Arrangement.Bottom, modifier = Modifier
-            .padding(16.dp)
-            .fillMaxHeight()) {
+            .background(color = MaterialTheme.colors.primary)
+    ) {
+        Column(
+            verticalArrangement = Arrangement.Bottom, modifier = Modifier
+                .padding(16.dp)
+                .fillMaxHeight()
+        ) {
             GlideImage(
                 imageModel = "https://randomuser.me/api/portraits/men/12.jpg",
                 modifier = Modifier
@@ -73,25 +83,39 @@ fun DrawerHeader() {
             )
             Spacer(modifier = Modifier.height(24.dp))
             Text("Farhan Roy", color = Color.White, fontWeight = FontWeight.Medium)
-            Text("+6208881299238", fontWeight = FontWeight.Light, color = Color.White, fontSize = 14.sp)
+            Text(
+                "+6208881299238",
+                fontWeight = FontWeight.Light,
+                color = Color.White,
+                fontSize = 14.sp
+            )
         }
     }
 }
 
 @Composable
-private fun DrawerMenuItem(icon: Int, text: String) {
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(16.dp)) {
+private fun DrawerMenuItem(
+    icon: Int,
+    text: String,
+    onClick: () -> Unit = {}
+) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier
+            .padding(16.dp)
+            .clickable { onClick() }
+    ) {
         Icon(
             painter = painterResource(id = icon),
             contentDescription = null,
             tint = Color.Gray,
-            modifier = Modifier.size(32.dp)
+            modifier = Modifier.size(28.dp)
         )
-        Spacer(modifier = Modifier.width(32.dp))
+        Spacer(modifier = Modifier.width(28.dp))
         Text(
             text = text,
             fontWeight = FontWeight.Medium
         )
-        
+
     }
 }
