@@ -3,6 +3,7 @@ package dev.farhanroy.telegramclone
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -15,6 +16,7 @@ import dev.farhanroy.telegramclone.ui.screens.ChatScreen
 import dev.farhanroy.telegramclone.ui.screens.SettingScreen
 import dev.farhanroy.telegramclone.ui.theme.TelegramCloneTheme
 
+@ExperimentalMaterialApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@ExperimentalMaterialApi
 @Composable
 fun MainScreen() {
     val navController = Router.current
@@ -58,7 +61,7 @@ fun MainScreen() {
         // Another Route : Chat detail
         composable(Routes.ChatDetail.route + "/{id}") {
             val id = it.arguments?.getInt("id")
-           ChatDetailScreen(navController = navController, index = id ?: 0)
+           ChatDetailScreen(index = id ?: 0)
         }
     }
 }
