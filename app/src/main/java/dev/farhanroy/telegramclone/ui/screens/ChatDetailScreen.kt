@@ -12,8 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.Attachment
 import androidx.compose.material.icons.outlined.EmojiEmotions
 import androidx.compose.material.icons.outlined.MicNone
@@ -26,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.skydoves.landscapist.glide.GlideImage
@@ -111,6 +111,9 @@ private fun ChatDetailBody() {
             }
             Spacer(modifier = Modifier.height(32.dp))
         }
+        item {
+            Spacer(modifier = Modifier.height(56.dp))
+        }
     }
 }
 
@@ -161,11 +164,13 @@ private fun ChatDetailBottomBar(bottomSheetState: ModalBottomSheetState) {
 @ExperimentalFoundationApi
 @Composable
 private fun ChatDetailBottomSheet() {
-    Column(Modifier.padding(16.dp)) {
+    Column(Modifier.padding(vertical = 16.dp, horizontal = 4.dp)) {
+
         LazyVerticalGrid(
-            cells = GridCells.Adaptive(minSize = 96.dp),
+            cells = GridCells.Adaptive(minSize = 108.dp),
+            modifier = Modifier.height(275.dp),
             content = {
-                items(6) {
+                items(13) {
                     GlideImage(
                         imageModel = "https://randomuser.me/api/portraits/men/12.jpg",
                         modifier = Modifier.padding(4.dp)
@@ -173,5 +178,114 @@ private fun ChatDetailBottomSheet() {
                 }
             }
         )
+        Row(
+            Modifier
+                .padding(top = 8.dp)
+                .fillMaxWidth()) {
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Image,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier
+                        .background(color = Color.Blue, shape = CircleShape)
+                        .padding(10.dp)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    "Gallery",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Image,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier
+                        .background(color = Color.Blue, shape = CircleShape)
+                        .padding(10.dp)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    "Gallery",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.FileCopy,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier
+                        .background(color = Color.Blue, shape = CircleShape)
+                        .padding(10.dp)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    "File",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.FileCopy,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier
+                        .background(color = Color.Blue, shape = CircleShape)
+                        .padding(10.dp)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    "File",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.FileCopy,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier
+                        .background(color = Color.Blue, shape = CircleShape)
+                        .padding(10.dp)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    "File",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            }
+        }
     }
 }

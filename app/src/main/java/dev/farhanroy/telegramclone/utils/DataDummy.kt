@@ -36,5 +36,15 @@ object DataDummy {
         Message("Write a book, and doing my work", false),
         Message("Wow, its so good man", true),
         Message("Yeah", false),
+        Message("Wow, its so good man", true),
+        Message("Yeah", false),
+        Message("Wow, its so good man", true),
+        Message("Yeah", false),
+        Message("Wow, its so good man", true),
+        Message("Yeah", false),
+        Message("Wow, its so good man", true),
+        Message("Yeah", false),
+        Message("Wow, its so good man", true),
+        Message("Yeah", false),
     )
 }
