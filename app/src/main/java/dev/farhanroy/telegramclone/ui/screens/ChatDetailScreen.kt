@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
@@ -166,9 +167,18 @@ private fun ChatDetailBottomBar(bottomSheetState: ModalBottomSheetState) {
 private fun ChatDetailBottomSheet() {
     Column(Modifier.padding(vertical = 16.dp, horizontal = 4.dp)) {
 
+        Box(modifier = Modifier
+            .height(4.dp)
+            .width(24.dp)
+            .align(Alignment.CenterHorizontally)
+            .background(color = Color.Gray, shape = RoundedCornerShape(4.dp))
+        )
+        
+        Spacer(modifier = Modifier.height(4.dp))
+
         LazyVerticalGrid(
             cells = GridCells.Adaptive(minSize = 108.dp),
-            modifier = Modifier.height(275.dp),
+            modifier = Modifier.height(272.dp),
             content = {
                 items(13) {
                     GlideImage(
@@ -208,32 +218,11 @@ private fun ChatDetailBottomSheet() {
                     .padding(horizontal = 16.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Default.Image,
+                    imageVector = Icons.Filled.InsertDriveFile,
                     contentDescription = null,
                     tint = Color.White,
                     modifier = Modifier
-                        .background(color = Color.Blue, shape = CircleShape)
-                        .padding(10.dp)
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    "Gallery",
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Light,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-            }
-
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.FileCopy,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier
-                        .background(color = Color.Blue, shape = CircleShape)
+                        .background(color = Color(0xff67B6FF), shape = CircleShape)
                         .padding(10.dp)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
@@ -250,16 +239,16 @@ private fun ChatDetailBottomSheet() {
                     .padding(horizontal = 16.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Default.FileCopy,
+                    imageVector = Icons.Filled.LocationOn,
                     contentDescription = null,
                     tint = Color.White,
                     modifier = Modifier
-                        .background(color = Color.Blue, shape = CircleShape)
+                        .background(color = Color(0xFF95EF74), shape = CircleShape)
                         .padding(10.dp)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    "File",
+                    "Location",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Light,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -271,16 +260,37 @@ private fun ChatDetailBottomSheet() {
                     .padding(horizontal = 16.dp)
             ) {
                 Icon(
-                    imageVector = Icons.Default.FileCopy,
+                    imageVector = Icons.Default.Equalizer,
                     contentDescription = null,
                     tint = Color.White,
                     modifier = Modifier
-                        .background(color = Color.Blue, shape = CircleShape)
+                        .background(color = Color(0xFFFED671), shape = CircleShape)
                         .padding(10.dp)
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    "File",
+                    "Poll",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Light,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+            }
+
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = null,
+                    tint = Color.White,
+                    modifier = Modifier
+                        .background(color = Color(0xFFFA7781), shape = CircleShape)
+                        .padding(10.dp)
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    "Video",
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Light,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
